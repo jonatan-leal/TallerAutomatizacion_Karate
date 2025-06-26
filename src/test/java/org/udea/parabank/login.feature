@@ -1,5 +1,5 @@
 @appcontact_login
-Feature: Login to Parabank
+Feature: Login to App Contact
 
   Background:
     * url baseUrl
