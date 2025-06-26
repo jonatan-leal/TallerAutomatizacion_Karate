@@ -1,29 +1,25 @@
-@parabank_login
+@appcontact_login
 Feature: Login to Parabank
 
   Background:
     * url baseUrl
     * header Accept = 'application/json'
 
-  Scenario: Customer Login
-    Given path 'login'
-    And path 'john' //userName
-    And path 'demo' //password
-    When method GET
+  Scenario: User Login
+    Given path '/users/login'
+    And request {"email": "jonleal@mail.com", "password": "jonleal"}
+    When method POST
     Then status 200
     And match response ==
     """
     {
-       "id": '#number',
-       "firstName": '#string',
-       "lastName": '#string',
-       "address": {
-            "street": '#string',
-            "city": '#string',
-            "state": '#string',
-            "zipCode": '#string'
+        "user": {
+            "_id": '#string',
+            "firstName": '#string',
+            "lastName": '#string',
+            "email": '#string',
+            "__v": '#number'
         },
-       "phoneNumber": '#string',
-       "ssn": '#string'
+        "token": '#string'
     }
     """
