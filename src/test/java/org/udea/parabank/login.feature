@@ -9,7 +9,7 @@ Feature: Login to App Contact
 
   Scenario: User Login
     Given path '/users/login'
-    And request 
+    And request =
     {
       "email": email,
       "password": password
