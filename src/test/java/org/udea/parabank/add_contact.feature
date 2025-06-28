@@ -14,7 +14,7 @@ Feature: Add Contact to App Contact
     * def validContact = 
     """
     {
-        "firstName": "John",
+        "firstName": "Johnatan",
         "lastName": "Doe",
         "birthdate": "1970-01-01",
         "email": "johndoe@mail.com",
@@ -39,7 +39,7 @@ Scenario: Create contact with valid fields
   # Create contact
   Given path '/contacts'
   And header Authorization = 'Bearer ' + authToken
-  And request contact
+  And request validContact
   When method POST
   Then status 201
   And match response ==
