@@ -12,7 +12,15 @@ Feature: Login to App Contact
     }
     """
 
-  Scenario: User Login
+    * def invalidCredentials = 
+    """
+    {
+      "email": "invalid@mail.com",
+      "password": "invalidpassword"
+    }
+    """
+
+  Scenario: User login with valid credentials
     Given path '/users/login'
     And request validCredentials
     When method POST
@@ -30,3 +38,9 @@ Feature: Login to App Contact
       "token": '#string'
     }
     """
+    
+  Scenario: User login with invalid credentials
+    Given path '/users/login'
+    And request invalidCredentials
+    When method POST
+    Then status 401
