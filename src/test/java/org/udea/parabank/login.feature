@@ -4,10 +4,16 @@ Feature: Login to App Contact
   Background:
     * url baseUrl
     * header Accept = 'application/json'
+    * def email = "jonleal@mail.com"
+    * def password = "jonleal"
 
   Scenario: User Login
     Given path '/users/login'
-    And request {"email": "jonleal@mail.com", "password": "jonleal"}
+    And request 
+    {
+      "email": email,
+      "password": password
+    }
     When method POST
     Then status 200
     And match response ==
