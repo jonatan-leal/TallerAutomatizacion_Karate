@@ -89,7 +89,7 @@ Scenario: Create contact with valid fields
     # Create contact
     Given path '/contacts'
     And header Authorization = 'Bearer ' + authToken
-    And request validContact
+    And request invalidContact
     When method POST
     Then status 400
     And match response.message == "Contact validation failed: email: Email is invalid"
