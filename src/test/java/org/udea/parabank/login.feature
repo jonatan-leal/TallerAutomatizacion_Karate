@@ -4,28 +4,29 @@ Feature: Login to App Contact
   Background:
     * url baseUrl
     * header Accept = 'application/json'
-    * def email = "jonleal@mail.com"
-    * def password = "jonleal"
+    * def validCredentials = 
+    """
+    {
+      "email": "jonleal@mail.com",
+      "password": "jonleal"
+    }
+    """
 
   Scenario: User Login
     Given path '/users/login'
-    And request =
-    {
-      "email": email,
-      "password": password
-    }
+    And request validCredentials
     When method POST
     Then status 200
     And match response ==
     """
     {
-        "user": {
-            "_id": '#string',
-            "firstName": '#string',
-            "lastName": '#string',
-            "email": '#string',
-            "__v": '#number'
-        },
-        "token": '#string'
+      "user": {
+          "_id": '#string',
+          "firstName": '#string',
+          "lastName": '#string',
+          "email": '#string',
+          "__v": '#number'
+      },
+      "token": '#string'
     }
     """
